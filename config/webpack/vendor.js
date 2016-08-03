@@ -5,7 +5,7 @@ import webpack from "webpack";
 import packageInfo from "../../package.json";
 import vendorConfig from "../../vendor.config.json";
 
-export default ({ production }) => {
+export default ({ production } = {}) => {
   const env = production ? "production" : "development";
   return {
     devtool: "source-map",

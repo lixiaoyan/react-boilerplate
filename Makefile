@@ -1,6 +1,6 @@
 PATH := ./node_modules/.bin:$(PATH)
 
-WEBPACK_OPTIONS := --progress --env
+WEBPACK_OPTIONS := --progress
 
 default: build
 

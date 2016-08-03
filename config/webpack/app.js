@@ -8,7 +8,7 @@ import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin";
 
 import config from "../../config.json";
 
-export default async ({ production }) => {
+export default async ({ production } = {}) => {
   const env = production ? "production" : "development";
   let manifest;
   try {
