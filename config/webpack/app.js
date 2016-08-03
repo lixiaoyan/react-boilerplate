@@ -4,6 +4,7 @@ import webpack from "webpack";
 import autoprefixer from "autoprefixer";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin";
 
 import config from "../../config.json";
 
@@ -102,6 +103,12 @@ export default async ({ production }) => {
           removeComments: true,
           collapseWhitespace: true,
         },
+      }),
+      !production && manifest && new AddAssetHtmlPlugin({
+        filepath: path.resolve("./dist/vendor/vendor.js"),
+        includeSourcemap: true,
+        outputPath: "./vendor",
+        publicPath: config.baseURL + "vendor/",
       }),
     ].filter(item => item),
     postcss() {
