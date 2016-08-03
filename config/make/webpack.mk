@@ -1,7 +1,3 @@
-config/webpack.dist/%.js: config/webpack/%.js
+config/webpack.dist/%.js: config/webpack/%.js config/.babelrc
 	mkdir -p $(dir $@)
 	babel $< -o $@
-
-webpack: $(patsubst config/webpack/%.js, config/webpack.dist/%.js, $(wildcard config/webpack/*.js))
-
-.PHONY: webpack

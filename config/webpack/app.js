@@ -1,3 +1,4 @@
+import fs from "mz/fs";
 import path from "path";
 import webpack from "webpack";
 import autoprefixer from "autoprefixer";
@@ -6,19 +7,31 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 
 import config from "../../config.json";
 
-export default env => {
+export default async env => {
   const production = env === "production";
+  let manifest;
+  try {
+    manifest = JSON.parse(await fs.readFile("./dist/vendor/vendor.manifest.json"));
+  } catch (err) {
+    manifest = null;
+  }
   return {
-    devtool: production ? "source-map" : "eval",
+    devtool: production ? "source-map" : "cheap-eval-source-map",
     context: path.resolve("./src"),
     entry: {
       app: ".",
     },
     output: {
-      path: path.resolve("./dist"),
+      path: production
+        ? path.resolve("./dist/deploy")
+        : path.resolve("./dist/app"),
       publicPath: config.baseURL,
-      filename: "scripts/[name].[chunkhash:8].js",
-      chunkFilename: "scripts/[name].[chunkhash:8].js",
+      filename: production
+        ? "scripts/[name].[chunkhash:8].js"
+        : "scripts/[name].js",
+      chunkFilename: production
+        ? "scripts/[name].[chunkhash:8].js"
+        : "scripts/[name].js",
     },
     module: {
       loaders: [
@@ -61,11 +74,14 @@ export default env => {
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({
-        debug: !production,
         minimize: production,
       }),
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(env),
+      }),
+      !production && manifest && new webpack.DllReferencePlugin({
+        context: path.resolve("."),
+        manifest,
       }),
       production && new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -73,7 +89,9 @@ export default env => {
         },
       }),
       new ExtractTextPlugin({
-        filename: "styles/[name].[contenthash:8].css",
+        filename: production
+          ? "styles/[name].[contenthash:8].css"
+          : "styles/[name].css",
         allChunks: true,
         disable: !production,
       }),
