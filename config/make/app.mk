@@ -1,7 +1,7 @@
 build: webpack
 	webpack $(WEBPACK_OPTIONS) --config ./config/webpack.dist/app.js
 
-server: webpack
+serve: webpack
 	webpack-dev-server $(WEBPACK_OPTIONS) --config ./config/webpack.dist/app.js
 
-.PHONY: build server
+.PHONY: build serve
