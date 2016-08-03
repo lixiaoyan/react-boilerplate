@@ -108,7 +108,7 @@ export default async ({ production }) => {
         filepath: path.resolve("./dist/vendor/vendor.js"),
         includeSourcemap: true,
         outputPath: "./vendor",
-        publicPath: config.baseURL + "vendor/",
+        publicPath: `${config.baseURL}vendor/`,
       }),
     ].filter(item => item),
     postcss() {

@@ -1,7 +1,9 @@
 import path from "path";
+import R from "ramda";
 import webpack from "webpack";
 
 import packageInfo from "../../package.json";
+import vendorConfig from "../../vendor.config.json";
 
 export default ({ production }) => {
   const env = production ? "production" : "development";
@@ -9,7 +11,13 @@ export default ({ production }) => {
     devtool: "source-map",
     context: path.resolve("."),
     entry: {
-      vendor: Object.keys(packageInfo.dependencies),
+      vendor: R.without(
+        vendorConfig.excludes,
+        R.union(
+          vendorConfig.includes,
+          Object.keys(packageInfo.dependencies),
+        ),
+      ),
     },
     output: {
       path: path.resolve("./dist/vendor"),
