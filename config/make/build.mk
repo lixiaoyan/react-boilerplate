@@ -9,7 +9,7 @@ dist/vendor: config/webpack.dist/vendor.js package.json
 
 vendor: dist/vendor
 
-deploy:
-	$(MAKE) ENV=production build
+deploy: config/webpack.dist/app.js
+	webpack $(WEBPACK_OPTIONS) --env.production --config ./config/webpack.dist/app.js
 
 .PHONY: build serve vendor deploy

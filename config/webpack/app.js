@@ -7,8 +7,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 
 import config from "../../config.json";
 
-export default async env => {
-  const production = env === "production";
+export default async ({ production }) => {
+  const env = production ? "production" : "development";
   let manifest;
   try {
     manifest = JSON.parse(await fs.readFile("./dist/vendor/vendor.manifest.json"));

@@ -1,3 +1,5 @@
-config/webpack.dist/%.js: config/webpack/%.js config/.babelrc
-	mkdir -p $(dir $@)
+config/webpack.dist:
+	mkdir -p $@
+
+config/webpack.dist/%.js: config/webpack/%.js config/webpack.dist config/.babelrc
 	babel $< -o $@
