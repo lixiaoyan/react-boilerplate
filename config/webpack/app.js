@@ -9,6 +9,7 @@ import config from "../../config.json";
 export default env => {
   const production = env === "production";
   return {
+    devtool: production ? "source-map" : "eval",
     context: path.resolve("./src"),
     entry: {
       app: ".",
