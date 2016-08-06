@@ -1,3 +1,3 @@
 import "./polyfills";
 
-import "./styles/index.styl";
+import "./styles/index.scss";

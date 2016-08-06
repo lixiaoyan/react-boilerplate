@@ -61,7 +61,7 @@ export default async ({ production } = {}) => {
           }),
         },
         {
-          test: /\.styl$/,
+          test: /\.(sass|scss)$/,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style",
             loader: [
@@ -72,7 +72,7 @@ export default async ({ production } = {}) => {
                 },
               },
               "postcss",
-              "stylus",
+              "sass",
             ],
           }),
         },

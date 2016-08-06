@@ -13,7 +13,7 @@ html {
   line-height: 1.5;
 }
 
-$ui-clearfix {
+%ui-clearfix {
   &::before,
   &::after {
     content: "";
