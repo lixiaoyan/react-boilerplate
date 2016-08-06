@@ -74,6 +74,7 @@ export default async ({ production } = {}) => {
                 },
               },
               "postcss",
+              "resolve-url",
               {
                 loader: "sass",
                 query: {
