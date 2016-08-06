@@ -53,6 +53,7 @@ export default async ({ production } = {}) => {
               {
                 loader: "css",
                 query: {
+                  sourceMap: true,
                   autoprefixer: false,
                 },
               },
@@ -68,11 +69,17 @@ export default async ({ production } = {}) => {
               {
                 loader: "css",
                 query: {
+                  sourceMap: true,
                   autoprefixer: false,
                 },
               },
               "postcss",
-              "sass",
+              {
+                loader: "sass",
+                query: {
+                  sourceMap: true,
+                },
+              },
             ],
           }),
         },
@@ -101,6 +108,7 @@ export default async ({ production } = {}) => {
         manifest,
       }),
       production && new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
         compress: {
           warnings: false,
         },
