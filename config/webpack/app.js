@@ -114,7 +114,9 @@ export default async ({ production } = {}) => {
       }),
       new HtmlWebpackPlugin({
         filename: "index.html",
+        template: "../template.ejs",
         title: config.title,
+        xhtml: true,
         minify: production && {
           removeComments: true,
           collapseWhitespace: true,
