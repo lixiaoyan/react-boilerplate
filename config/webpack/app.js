@@ -61,6 +61,22 @@ export default async ({ production } = {}) => {
           }),
         },
         {
+          test: /\.styl$/,
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: "style",
+            loader: [
+              {
+                loader: "css",
+                query: {
+                  autoprefixer: false,
+                },
+              },
+              "postcss",
+              "stylus",
+            ],
+          }),
+        },
+        {
           test: /\.(webp|png|ico|jpg|jpeg|gif|svg|ttf|eot|woff|woff2)$/,
           loader: "file",
           query: {
