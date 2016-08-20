@@ -4,10 +4,10 @@ build: config/webpack.dist/app.js vendor
 serve: config/webpack.dist/app.js vendor
 	webpack-dev-server $(WEBPACK_OPTIONS) --config ./config/webpack.dist/app.js
 
-dist/vendor: config/webpack.dist/vendor.js package.json
+dist/vendor/vendor.js: config/webpack.dist/vendor.js package.json
 	webpack $(WEBPACK_OPTIONS) --config ./config/webpack.dist/vendor.js
 
-vendor: dist/vendor
+vendor: dist/vendor/vendor.js
 
 deploy: config/webpack.dist/app.js
 	webpack $(WEBPACK_OPTIONS) --env.production --config ./config/webpack.dist/app.js
