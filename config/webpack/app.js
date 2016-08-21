@@ -46,6 +46,10 @@ export default async ({ production } = {}) => {
           loader: "json",
         },
         {
+          test: /\.json5$/,
+          loader: "json5",
+        },
+        {
           test: /\.css$/,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: "style",
