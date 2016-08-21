@@ -134,8 +134,8 @@ export default async ({ production } = {}) => {
       !production && manifest && new AddAssetHtmlPlugin({
         filepath: path.resolve("./dist/vendor/vendor.js"),
         includeSourcemap: true,
-        outputPath: "./vendor",
-        publicPath: `${config.baseURL}vendor/`,
+        outputPath: "./scripts",
+        publicPath: `${config.baseURL}scripts/`,
       }),
     ].filter(item => item),
     postcss() {
