@@ -1,15 +1,15 @@
-build: config/webpack.dist/app.js vendor
-	webpack $(WEBPACK_OPTIONS) --config ./config/webpack.dist/app.js
+build: vendor
+	$(WEBPACK) --config ./config/webpack/app.js
 
-serve: config/webpack.dist/app.js vendor
-	webpack-dev-server $(WEBPACK_OPTIONS) --config ./config/webpack.dist/app.js
+serve: vendor
+	$(WEBPACK_DEV_SERVER) --config ./config/webpack/app.js
 
-dist/vendor/vendor.js: config/webpack.dist/vendor.js package.json
-	webpack $(WEBPACK_OPTIONS) --config ./config/webpack.dist/vendor.js
+dist/vendor/vendor.js: package.json
+	$(WEBPACK) --config ./config/webpack/vendor.js
 
 vendor: dist/vendor/vendor.js
 
-deploy: config/webpack.dist/app.js
-	webpack $(WEBPACK_OPTIONS) --env.production --config ./config/webpack.dist/app.js
+deploy:
+	$(WEBPACK) --env.production --config ./config/webpack/app.js
 
 .PHONY: build serve vendor deploy
