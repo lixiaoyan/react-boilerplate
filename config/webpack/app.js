@@ -104,6 +104,15 @@ export default async ({ production } = {}) => {
     plugins: [
       new webpack.LoaderOptionsPlugin({
         minimize: production,
+        options: {
+          context: path.resolve("."),
+          output: {
+            path: production
+              ? path.resolve("./dist/deploy")
+              : path.resolve("./dist/app"),
+          },
+          postcss: [autoprefixer],
+        },
       }),
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(env),
@@ -142,9 +151,6 @@ export default async ({ production } = {}) => {
         publicPath: `${config.baseURL}scripts/`,
       }),
     ].filter(item => item),
-    postcss() {
-      return [autoprefixer];
-    },
     devServer: {
       host: "0.0.0.0",
       port: 8080,
