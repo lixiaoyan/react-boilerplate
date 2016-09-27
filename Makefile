@@ -1,7 +1,8 @@
 BIN := ./node_modules/.bin
 
-WEBPACK := $(BIN)/babel-node $(BIN)/webpack
-WEBPACK_DEV_SERVER := $(BIN)/babel-node $(BIN)/webpack-dev-server
+BABEL_NODE := $(BIN)/babel-node
+WEBPACK := $(BABEL_NODE) $(BIN)/webpack
+WEBPACK_DEV_SERVER := $(BABEL_NODE) $(BIN)/webpack-dev-server
 WEBPACK_OPTIONS := --progress
 
 default: build
