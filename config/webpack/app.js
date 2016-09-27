@@ -40,6 +40,9 @@ export default async ({ production } = {}) => {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: "babel",
+          query: {
+            cacheDirectory: !production,
+          },
         },
         {
           test: /\.json$/,
