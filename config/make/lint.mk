@@ -1,4 +1,4 @@
 lint:
-	eslint --ext *.js --ext *.jsx ./src
+	$(ESLINT) --ext *.js --ext *.jsx ./src
 
 .PHONY: lint
