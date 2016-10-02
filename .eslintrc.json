@@ -2,6 +2,16 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "no-plusplus": "off",
+    "no-implicit-coercion": "error",
+    "no-invalid-this": "error",
+    "no-param-reassign": "error",
+    "no-else-return": "off",
+    "no-cond-assign": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-implicit-globals": "error",
+    "camelcase": "error",
+    "prefer-reflect": "error"
   }
 }
