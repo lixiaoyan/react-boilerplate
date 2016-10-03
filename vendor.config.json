@@ -1,6 +1,7 @@
 {
   "includes": [],
   "excludes": [
+    "babel-runtime",
     "normalize.css"
   ]
 }
