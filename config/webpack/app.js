@@ -37,6 +37,12 @@ export default async ({ production } = {}) => {
     module: {
       rules: [
         {
+          enforce: "pre",
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          loader: "eslint",
+        },
+        {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: "babel",
