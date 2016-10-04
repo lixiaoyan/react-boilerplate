@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - stable
+script:
+  - "make lint"
+  - "make deploy"
+cache:
+  directories:
+    - node_modules
