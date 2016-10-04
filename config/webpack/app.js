@@ -2,6 +2,7 @@ import fs from "mz/fs";
 import path from "path";
 import webpack from "webpack";
 import autoprefixer from "autoprefixer";
+import SassLintPlugin from "sasslint-webpack-plugin";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin";
@@ -125,6 +126,9 @@ export default async ({ production } = {}) => {
       }),
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(env),
+      }),
+      new SassLintPlugin({
+        ignorePlugins: ["extract-text-webpack-plugin"],
       }),
       !production && manifest && new webpack.DllReferencePlugin({
         context: path.resolve("."),
