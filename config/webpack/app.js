@@ -114,7 +114,7 @@ export default async ({ production } = {}) => {
       new webpack.LoaderOptionsPlugin({
         minimize: production,
         options: {
-          context: path.resolve("."),
+          context: path.resolve("./src"),
           output: {
             path: production
               ? path.resolve("./dist/deploy")
