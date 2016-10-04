@@ -9,4 +9,4 @@ lint-styles:
 
 lint: lint-config lint-scripts lint-styles
 
-.PHONY: lint
+.PHONY: lint-config lint-scripts lint-styles lint
