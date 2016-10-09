@@ -40,6 +40,9 @@ export default async ({ production, hot } = {}) => {
         ? "scripts/[name].[chunkhash:8].js"
         : "scripts/[name].js",
     },
+    resolve: {
+      extensions: [".js", ".jsx"],
+    },
     module: {
       rules: [
         {
