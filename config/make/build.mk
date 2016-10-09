@@ -2,7 +2,7 @@ build: vendor
 	$(WEBPACK) --config ./config/webpack/app.js
 
 serve: vendor
-	$(WEBPACK_DEV_SERVER) --config ./config/webpack/app.js
+	$(WEBPACK_DEV_SERVER) --env.hot --config ./config/webpack/app.js
 
 dist/vendor/vendor.js: config/webpack/vendor.js package.json vendor.config.json
 	$(WEBPACK) --config ./config/webpack/vendor.js

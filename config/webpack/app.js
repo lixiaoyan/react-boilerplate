@@ -9,7 +9,7 @@ import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin";
 
 import config from "../../config.json";
 
-export default async ({ production } = {}) => {
+export default async ({ production, hot } = {}) => {
   const env = production ? "production" : "development";
   let manifest;
   try {
@@ -21,7 +21,12 @@ export default async ({ production } = {}) => {
     devtool: production ? "source-map" : "cheap-eval-source-map",
     context: path.resolve("./src"),
     entry: {
-      app: ".",
+      app: hot
+        ? [
+          "react-hot-loader/patch",
+          ".",
+        ]
+        : ".",
     },
     output: {
       path: production
@@ -46,10 +51,17 @@ export default async ({ production } = {}) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: "babel",
-          query: {
-            cacheDirectory: !production,
-          },
+          use: [
+            hot && {
+              loader: "react-hot-loader/webpack",
+            },
+            {
+              loader: "babel",
+              query: {
+                cacheDirectory: !production,
+              },
+            },
+          ].filter(item => item),
         },
         {
           test: /\.json$/,
@@ -140,6 +152,7 @@ export default async ({ production } = {}) => {
           warnings: false,
         },
       }),
+      hot && new webpack.HotModuleReplacementPlugin(),
       new ExtractTextPlugin({
         filename: production
           ? "styles/[name].[contenthash:8].css"
@@ -168,6 +181,8 @@ export default async ({ production } = {}) => {
       host: "0.0.0.0",
       port: 8080,
       publicPath: config.baseURL,
+      inline: true,
+      hot,
       historyApiFallback: true,
     },
   };
