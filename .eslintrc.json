@@ -15,6 +15,8 @@
     "no-unmodified-loop-condition": "error",
     "no-implicit-globals": "error",
     "camelcase": ["error", { "properties": "always" }],
-    "prefer-reflect": "error"
+    "prefer-reflect": "error",
+    "react/self-closing-comp": ["error", { "html": false }],
+    "react/prefer-stateless-function": "off"
   }
 }
