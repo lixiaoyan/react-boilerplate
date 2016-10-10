@@ -6,6 +6,7 @@ import SassLintPlugin from "sasslint-webpack-plugin";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin";
+import InterpolateHtmlPlugin from "./plugins/interpolate-html-plugin";
 
 import config from "../../config.json";
 
@@ -163,10 +164,12 @@ export default async ({ production, hot } = {}) => {
         allChunks: true,
         disable: !production,
       }),
+      new InterpolateHtmlPlugin({
+        title: config.title,
+      }),
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: "../template.ejs",
-        title: config.title,
+        template: "../index.html",
         xhtml: true,
         minify: production && {
           removeComments: true,
