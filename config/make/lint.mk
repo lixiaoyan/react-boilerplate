@@ -2,7 +2,7 @@ lint-config:
 	$(ESLINT) ./config
 
 lint-scripts:
-	$(ESLINT) --ext *.js --ext *.jsx ./src
+	$(ESLINT) --ext .js --ext .jsx ./src
 
 lint-styles:
 	$(SASS_LINT) "./src/**/*.s+(a|c)ss"
