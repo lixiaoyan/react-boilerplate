@@ -6,6 +6,7 @@
     "classnames": "^2.2.5",
     "core-js": "^2.4.1",
     "dom4": "^1.8.3",
+    "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "normalize.css": "^5.0.0",
     "react": "^15.3.2",
@@ -14,8 +15,8 @@
     "react-redux": "^4.4.5",
     "react-router": "^4.0.0-alpha.4",
     "redux": "^3.6.0",
-    "redux-observable": "^0.12.1",
-    "rxjs": "^5.0.0-beta.12"
+    "redux-logger": "^2.7.0",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^1.0.2",
