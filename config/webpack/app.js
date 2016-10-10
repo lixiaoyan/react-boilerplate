@@ -140,11 +140,13 @@ export default async ({ production, hot } = {}) => {
           postcss: [autoprefixer],
         },
       }),
-      new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify(env),
-      }),
       new SassLintPlugin({
         ignorePlugins: ["extract-text-webpack-plugin"],
+      }),
+      hot && new webpack.HotModuleReplacementPlugin(),
+      !production && new webpack.NamedModulesPlugin(),
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify(env),
       }),
       !production && manifest && new webpack.DllReferencePlugin({
         context: path.resolve("."),
@@ -156,7 +158,6 @@ export default async ({ production, hot } = {}) => {
           warnings: false,
         },
       }),
-      hot && new webpack.HotModuleReplacementPlugin(),
       new ExtractTextPlugin({
         filename: production
           ? "styles/[name].[contenthash:8].css"
