@@ -8,6 +8,9 @@ rules:
   border-zero:
     - 1
     - convention: "none"
+  no-color-literals:
+    - 1
+    - allow-rgba: true
   shorthand-values:
     - 1
     - allowed-shorthands: [1, 2]
