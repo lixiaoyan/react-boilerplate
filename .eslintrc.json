@@ -17,6 +17,7 @@
     "camelcase": ["error", { "properties": "always" }],
     "prefer-reflect": "error",
     "react/self-closing-comp": ["error", { "html": false }],
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "react/forbid-prop-types": "off"
   }
 }
