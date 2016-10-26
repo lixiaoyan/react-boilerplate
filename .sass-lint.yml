@@ -214,7 +214,7 @@ rules:
         - "pointer-events"
         - "cursor"
         - "visibility"
-        - "opaticy"
+        - "opacity"
         - "transform-style"
         - "perspective"
         - "perspective-origin"
